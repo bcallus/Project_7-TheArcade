@@ -115,3 +115,6 @@ let gameState = {
   * createGameBoard function to create board
 * need startGame function
   * need to have a snake
+* need resetGame function
+* need a generateRandomApple function
+* need a snakeMovement function
