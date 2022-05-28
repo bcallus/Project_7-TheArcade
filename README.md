@@ -17,7 +17,7 @@ The following are notes for myself in order to make my game function well and me
 * start the game over without having to reset the browser
 
 ## *Delightful* extras - Bonus Features
-* an set the difficulty (speed of snake)
+* set the difficulty (speed of snake)
 * can keep track of my stats (maximum points, average points, etc.) between games
 
 ## Stretch Goals - Extra Bonus Features
@@ -88,3 +88,20 @@ let gameState = {
   snake: snake // from above
 }
 ```
+
+***
+
+### Game Play
+* Game starts by pressing start buton
+    * snake automatically starts moving
+    * the user must make a decision for the sake of the snake (aka change the direction)
+        * the user changing the direction is a 'keydown' event
+        * the keydown event contains data - aka the direction
+        * you can set things like nextDirection property whenever the event fires
+        * decide if the snake is allowed to move backwards (in on itself, or towards its own throat) or not as this will affect how gameplay feels
+    * after each tick() you have to check if the snake hit a wall or itself
+        * the head having the same value as anywhere in its body
+        * the head having an index outside of the bounds of the grid
+            *if either of these are true, the game is over
+    * you can see the snake length at the end of the game
+    * the game is reset by pressing 'play again'
