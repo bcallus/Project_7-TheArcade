@@ -20,13 +20,26 @@ The following are notes for myself in order to make my game function well and me
 * an set the difficulty (speed of snake)
 * can keep track of my stats (maximum points, average points, etc.) between games
 
+## Stretch Goals - Extra Bonus Features
+* Have more than one thing to eat on the board at a time
+    * Some speed you up (oh no!)
+    * Some slow you down (oh yay!)
+    * Some are poisonous to snakes, and change the controls while the snake is poisoned
+    * Some cause super-growth (for the next 5 ticks the snake keeps getting bigger)
+* Get rid of the walls, have the snake wrap around to the other side when they go "off screen"
+* Add extra walls, grid elements which are dangerous to collide with
+* Make the snake a little faster each time it eats something
+* Make the grid size selectable
+* Make a difficulty (speed) selector
+
+
 ## Things you must figure out in all games
 * What is the starting state?
 * How do I display the state of the game to the user?
 * What controls/interface to I make available to the user?
 * How does each interaction update the state?
 
-## Game State/Loop - Specific to Snake
+## Game Loop - Specific to Snake
 
 * The game loop is general: show state -> update state -> go back to step 1
 * all the meanwhile the user can also interact, 
@@ -45,4 +58,32 @@ setInterval(tick, 1000 / 30) // as close to 30 frames per second as possible
 document.addEventListener('keydown', function (event) {
   // here you might read which key was pressed and update the state accordingly
 })
+```
+
+## Game State
+
+* The snake has two important features
+    1. a body
+    2. an intended direction
+
+    For example:
+    ```
+    let snake = {
+  body: [ [10, 5], [10, 6], [10, 7], [10, 8] ],
+  nextDirection: [1, 0]
+    }
+    ```
+
+* There is a perpetual game tick - tick() - every time the game ticks:
+    1. remove the "tail of the snake" (the sub-array at position 0) 
+    2.  tack on a new "head" 
+        * you can use the last sub-array and the **nextDirection** to generate the new final sub-array
+    * if the snake is eating the apple, you only tack on a new head. you do not remove the tail of the snake.
+* There is an intended next direction - nextDirection 
+
+For example:
+```let gameState = {
+  apple: [11, 8],
+  snake: snake // from above
+}
 ```
