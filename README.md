@@ -103,5 +103,8 @@ let gameState = {
         * the head having the same value as anywhere in its body
         * the head having an index outside of the bounds of the grid
             *if either of these are true, the game is over
+    * if the snake eats the apple:
+        * the snake gets larger
+        * a new apple is randomly generated to the board
     * you can see the snake length at the end of the game
     * the game is reset by pressing 'play again'
