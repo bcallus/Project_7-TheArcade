@@ -108,3 +108,10 @@ let gameState = {
         * a new apple is randomly generated to the board
     * you can see the snake length at the end of the game
     * the game is reset by pressing 'play again'
+
+### Starting 
+
+* need a table with rows and colums and cells.
+  * createGameBoard function to create board
+* need startGame function
+  * need to have a snake

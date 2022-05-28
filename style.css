@@ -1,0 +1,28 @@
+html {
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+#game-board {
+  width: 560px;
+  height: 560px;
+  border: 1px solid black;
+  margin: 0 auto;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
+.game-board-cell {
+    width: 25px;
+    height: 25px;
+    border: black solid;
+}
+
+.snake {
+    background-color: blue;
+}
+
+.buttons {
+    margin: 1rem;
+}
