@@ -82,7 +82,8 @@ document.addEventListener('keydown', function (event) {
 * There is an intended next direction - nextDirection 
 
 For example:
-```let gameState = {
+```
+let gameState = {
   apple: [11, 8],
   snake: snake // from above
 }
