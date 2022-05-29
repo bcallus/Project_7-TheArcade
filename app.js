@@ -61,12 +61,12 @@ function moveSnake (gameBoardCell) {
     gameBoardCell[snake[0]].classList.add("snake");
 }
 
-function snakeHitChecker () {
+function snakeHitChecker (gameBoardCell) {
     let bottomRow = document.getElementById("game-board").lastChild;
     bottomRow.className = "bottom-row";
     let topRow = document.getElementById("game-board").firstChild;
     topRow.className = "top-row";
-    if (snake[0] === bottomRow && direction === width || snake[0] === topRow && direction === -width) { //still need right and left and need to test if top and bottom even works
+    if (gameBoardCell[snake[0] + direction].classList.contains("snake") || snake[0] === bottomRow && direction === width || snake[0] === topRow && direction === -width) { //still need right and left and need to test if top and bottom even works, //first part is correct, snake eating itself
         return true;
     } else {
         return false;
