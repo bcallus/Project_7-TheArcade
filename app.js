@@ -10,18 +10,19 @@ let direction = 1; //adding one means to the right
 let width = 20; //maybe change this if we allow the user to select a board size
 let appleIndex = 0;
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     // document.addEventListener("keyup", control); //control is a function that defines keycodes
-//     makeGameBoard();
-//     startGame();
-//     playAgain.addEventListener("click", resetGame); //replay is a function that defines 'play again', call it resetGame
-//   });
+document.addEventListener("DOMContentLoaded", function () {
+    direction = 0;
+    const startButton = document.getElementById("start-button")
+    startButton.addEventListener("click", function() {
+        direction = 1
+    })
+
+  });
 
 function makeGameBoard () {
     for (let i = 0; i < 20; i++) {
         const gameBoardRow = document.createElement("tr");
         gameBoard.appendChild(gameBoardRow);
-        // gameBoardRow.className = "game-board-row"
         for (let j = 0; j < 20; j++) {
         const gameBoardCell = document.createElement("td")
         gameBoardRow.appendChild(gameBoardCell);
@@ -34,11 +35,12 @@ function startGame () {
     const gameBoardCell = document.getElementsByClassName("game-board-cell");
     generateRandomApple (gameBoardCell);
     direction = 1; 
-    scoreDisplay.innerHTML = score;
+    scoreDisplay.innerHTML = "Score: " + score;
     intervalTime = 1000;
     snake = [2, 1, 0];
     currentIndex = 0;
     snake.forEach((index) => gameBoardCell[index].classList.add("snake"));
+    clearInterval(interval);
     interval = setInterval(snakeMoveOrDie, intervalTime);
 }
 
@@ -47,7 +49,7 @@ function snakeMoveOrDie () {
     const gameOutcomeMessage = document.getElementsByClassName("game-outcome-message");
     if (snakeHitChecker(gameBoardCell)) {
         gameOutcomeMessage.innerHTML = "GAME OVER";
-        return resetInterval(interval); 
+        return setInterval(interval); //should be clearInterval but then start button doesnt work. added clearInterval to startGame, seemed to fix multiple issues
     } else {
         moveSnake(gameBoardCell);
     }
@@ -124,8 +126,11 @@ makeGameBoard();
 startGame();
 snakeMoveOrDie();
 snakeHitChecker();
-resetInterval();
 generateRandomApple();
 moveSnake();
 eatApple();
+
+//dont forget!!!
+//need to add a start button. game is currently starting automatically.
+//fix the score and inner HTML text
 

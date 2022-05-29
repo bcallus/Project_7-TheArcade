@@ -4,6 +4,10 @@ html {
     text-align: center;
 }
 
+.score-display {
+    padding: 1rem;
+}
+
 #game-board {
   width: 560px;
   height: 560px;
