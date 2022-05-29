@@ -34,7 +34,7 @@ function makeGameBoard () {
 function startGame () {
     const gameBoardCell = document.getElementsByClassName("game-board-cell");
     generateRandomApple (gameBoardCell);
-    direction = 1; //adding 1 is right
+    direction = 1; 
     scoreDisplay.innerHTML = score;
     intervalTime = 1000;
     snake = [2, 1, 0];
@@ -47,13 +47,14 @@ function snakeMoveOrDie () {
     const gameBoardCell = document.getElementsByClassName("game-board-cell");
     const gameOutcomeMessage = document.getElementsByClassName("game-outcome-message");
     if (snakeHitChecker(gameBoardCell)) {
-        gameOutcomeMessage.innerHTML = "GAME OVER"
+        gameOutcomeMessage.innerHTML = "GAME OVER";
         return resetInterval(interval); 
     } else {
         moveSnake(gameBoardCell);
     }
 }
 
+//this would be the tick function
 function moveSnake (gameBoardCell) {
     let tail = snake.pop();
     gameBoardCell[tail].classList.remove("snake");
@@ -99,9 +100,22 @@ function resetInterval () {
 }
 
 
-function eatApple () {
-
+function eatApple (gameBoardCell, tail) {
+    let speed = .9;
+if (gameBoardCell[snake[0]].classList.contains("apple")) {
+    gameBoardCell[snake[0]].classList.remove("apple");
+    gameBoardCell[tail].classList.add("snake");
+    snake.push(tail);
+    generateRandomApple(gameBoardCell);
+    score++;
+    scoreDisplay.textContent = score;
+    clearInterval (interval);
+    intervalTime *= speed;
+    interval = setInterval(snakeMoveOrDie, intervalTime);
 }
+}
+
+//if snake gets to be a certain length, open up other things on the board.
 
 
 
