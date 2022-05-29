@@ -4,7 +4,7 @@ const gameBoard = document.getElementById("game-board");
 const scoreDisplay = document.getElementsByClassName("score-display");
 let snake = [gameBoard[0]];
 let score = 0;
-let intervalTime = 0;
+let intervalTime = 0; //turn this into a tick function
 let interval = 0;
 let direction = 1; //adding one means to the right
 let width = 20; //maybe change this if we allow the user to select a board size
@@ -74,10 +74,6 @@ function snakeHitChecker (gameBoardCell) {
     }
 }
 
-function resetInterval () {
-
-}
-
 function generateRandomApple (gameBoardCell) {
     do {
         appleIndex = Math.floor(Math.random() * gameBoardCell.length)
@@ -85,9 +81,29 @@ function generateRandomApple (gameBoardCell) {
         gameBoardCell[appleIndex].classList.add("apple");
   }
 
+document.addEventListener("keydown", function (event) {
+    const keyName = event.key 
+    if (keyName === "ArrowUp") {
+        direction = -width;
+    } else if (keyName === "ArrowDown") {
+        direction = + width;
+    } else if (keyName === "ArrowRight") {
+        direction = 1;
+    } else if (keyName === "ArrowLeft") {
+        direction = -1;
+    } 
+})
+
+function resetInterval () {
+
+}
+
+
 function eatApple () {
 
 }
+
+
 
 
 //remove function calls that already exist in code above
