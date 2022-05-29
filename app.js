@@ -1,14 +1,9 @@
-//Using How to Build a Snake Game In JavaScript from freeCodeCamp.org as a guide to help me through getting the game functioning. I am not just copying the work, I am working through all of its parts so that I have an understanding of what each part does. I am changing things when I am confident that I know of another way to achieve the same outcome. 
-
 const gameBoard = document.getElementById("game-board");
 const scoreDisplay = document.getElementsByClassName("score-display")[0];
-let snake;
-let score = 0;
-let intervalTime = 0; //turn this into a tick function
-let interval = 0;
-let direction = 1; //adding one means to the right
 let width = 20; //maybe change this if we allow the user to select a board size
-let apple = 0;
+let snake;
+let apple;
+let score = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
     direction = 0;
@@ -52,20 +47,32 @@ function generateRandomApple (gameBoardCell) {
 
 function startGame () {
     const gameBoardCell = document.getElementsByClassName("game-board-cell");
-    generateRandomApple (gameBoardCell);
-    snake = [1, 0];
-    direction = 1; 
-    scoreDisplay.innerHTML = "Score: " + score;
-
-    //rewrite the forEach for adding snake class.
-    // for (let snakeCell of snake) {
-    //     snake.className.add("snake");
-    // }
-    intervalTime = 1000;
-    // snake.forEach((index) => gameBoardCell[index].classList.add("snake"));
-    clearInterval(interval);
-    interval = setInterval(snakeMoveOrDie, intervalTime);
+    generateRandomApple(gameBoardCell);
 }
+
+
+
+
+
+
+//everything above is myown
+//for below: Using How to Build a Snake Game In JavaScript from freeCodeCamp.org as a guide to help me through getting the game functioning. I am not just copying the work, I am working through all of its parts so that I have an understanding of what each part does. I am changing things when I am confident that I know of another way to achieve the same outcome. 
+
+let intervalTime = 0; //turn this into a tick function
+let interval = 0;
+let direction = 1; //adding one means to the right
+
+// function startGame () {
+//     const gameBoardCell = document.getElementsByClassName("game-board-cell");
+//     generateRandomApple (gameBoardCell);
+//     snake = [1, 0];
+//     direction = 1; 
+//     scoreDisplay.innerHTML = "Score: " + score;
+//     intervalTime = 1000;
+//     snake.forEach((index) => gameBoardCell[index].classList.add("snake"));
+//     clearInterval(interval);
+//     interval = setInterval(snakeMoveOrDie, intervalTime);
+// }
 
 function snakeMoveOrDie () {
     const gameBoardCell = document.getElementsByClassName("game-board-cell");
