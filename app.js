@@ -10,13 +10,12 @@ let direction = 1; //adding one means to the right
 let width = 20; //maybe change this if we allow the user to select a board size
 let appleIndex = 0;
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.addEventListener("keyup", control); //control is a function that defines keycodes
-    makeGameBoard();
-    startGame();
-    playAgain.addEventListener("click", replay); //replay is a function that defines 'play again', call it resetGame
-  });
-
+// document.addEventListener("DOMContentLoaded", function () {
+//     // document.addEventListener("keyup", control); //control is a function that defines keycodes
+//     makeGameBoard();
+//     startGame();
+//     playAgain.addEventListener("click", resetGame); //replay is a function that defines 'play again', call it resetGame
+//   });
 
 function makeGameBoard () {
     for (let i = 0; i < 20; i++) {
@@ -95,11 +94,6 @@ document.addEventListener("keydown", function (event) {
     } 
 })
 
-function resetInterval () {
-
-}
-
-
 function eatApple (gameBoardCell, tail) {
     let speed = .9;
 if (gameBoardCell[snake[0]].classList.contains("apple")) {
@@ -117,6 +111,11 @@ if (gameBoardCell[snake[0]].classList.contains("apple")) {
 
 //if snake gets to be a certain length, open up other things on the board.
 
+function resetGame () {
+    gameBoard.innerHTML = ""; //get this working
+    makeGameBoard();
+    startGame();
+}
 
 
 
