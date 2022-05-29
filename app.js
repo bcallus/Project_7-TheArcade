@@ -6,6 +6,8 @@ let snake = [gameBoard[0]];
 let score = 0;
 let intervalTime = 0;
 let interval = 0;
+let direction = 1; //adding one means to the right
+let width = 20; //maybe change this if we allow the user to select a board size
 
 document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("keyup", control); //control is a function that defines keycodes
@@ -19,6 +21,7 @@ function makeGameBoard () {
     for (let i = 0; i < 20; i++) {
         let gameBoardRow = document.createElement("tr");
         gameBoard.appendChild(gameBoardRow);
+        // gameBoardRow.className = "game-board-row"
         for (let j = 0; j < 20; j++) {
         let gameBoardCell = document.createElement("td")
         gameBoardRow.appendChild(gameBoardCell);
@@ -30,7 +33,7 @@ function makeGameBoard () {
 function startGame () {
     let gameBoardCell = document.getElementsByClassName("game-board-cell");
     generateRandomApple (gameBoardCell);
-    // direction =
+    direction = 1; //adding 1 is right
     scoreDisplay.innerHTML = score;
     intervalTime = 1000;
     snake = [2, 1, 0];
@@ -50,8 +53,24 @@ function snakeMoveOrDie () {
     }
 }
 
-function snakeHitChecker () {
+function moveSnake (gameBoardCell) {
+    let tail = snake.pop();
+    gameBoardCell[tail].classList.remove("snake");
+    snake.unshift(snake[0] + direction);
+    eatApple(gameBoardCell, tail);
+    gameBoardCell[snake[0]].classList.add("snake");
+}
 
+function snakeHitChecker () {
+    let bottomRow = document.getElementById("game-board").lastChild;
+    bottomRow.className = "bottom-row";
+    let topRow = document.getElementById("game-board").firstChild;
+    topRow.className = "top-row";
+    if (snake[0] === bottomRow && direction === width || snake[0] === topRow && direction === -width) { //still need right and left and need to test if top and bottom even works
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function resetInterval () {
@@ -62,15 +81,18 @@ function generateRandomApple () {
 
 }
 
-function moveSnake () {
+function eatApple () {
 
 }
 
+
+//remove function calls that already exist in code above
 makeGameBoard();
 startGame();
 snakeMoveOrDie();
 snakeHitChecker();
 resetInterval();
 generateRandomApple();
-moveSnake()
+moveSnake();
+eatApple();
 
