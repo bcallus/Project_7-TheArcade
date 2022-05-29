@@ -4,12 +4,15 @@ let width = 20; //maybe change this if we allow the user to select a board size
 let snake;
 let apple;
 let score = 0;
+let direction;
+// let interval = 1;
 
 document.addEventListener("DOMContentLoaded", function () {
+    // setInterval(tick, 0); //stops it from auto starting but probably not right
     direction = 0;
     const startButton = document.getElementById("start-button")
     startButton.addEventListener("click", function() {
-        direction = 1
+        direction = 1;
     })
   });
 
@@ -48,16 +51,27 @@ function generateRandomApple (gameBoardCell) {
 function startGame () {
     const gameBoardCell = document.getElementsByClassName("game-board-cell");
     generateRandomApple(gameBoardCell);
-    snake = [2, 1, 0]
+    snake = [1, 0]
     for (const snakeCell of snake) {
         gameBoardCell[snakeCell].classList.add("snake");
     } 
     scoreDisplay.innerHTML = "Score: " + score;
+    // clearInterval(interval);
+    setInterval(tick, 1000, gameBoardCell) //not sure yet
 }
 
-setInterval(tick, 1000);
-function tick () {
- 
+function tick (gameBoardCell) {
+ let tail = snake.pop();
+ gameBoardCell[tail].classList.remove("snake");
+ snake.unshift(snake[0] + direction)
+ gameBoardCell[snake[0]].classList.add("snake");
+}
+
+function resetGame () {
+    gameBoard.innerHTML = ""; //get this working
+    // clearInterval(); //need to reset interval before new game starts
+    makeGameBoard();
+    startGame();
 }
 
 
@@ -67,13 +81,14 @@ function tick () {
 makeGameBoard();
 startGame();
 generateRandomApple();
+tick();
 
-//everything above is myown
+//everything above is my own
 //for below: Using How to Build a Snake Game In JavaScript from freeCodeCamp.org as a guide to help me through getting the game functioning. I am not just copying the work, I am working through all of its parts so that I have an understanding of what each part does. I am changing things when I am confident that I know of another way to achieve the same outcome. 
 
 // let intervalTime = 0; //turn this into a tick function
 // let interval = 0;
-let direction = 1; //adding one means to the right
+
 
 // function startGame () {
 //     const gameBoardCell = document.getElementsByClassName("game-board-cell");
