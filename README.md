@@ -117,4 +117,11 @@ let gameState = {
   * need to have a snake
 * need resetGame function
 * need a generateRandomApple function
-* need a snakeMovement function
+  * places the apple randomly after it is eaten or at the start of the game
+* need a snakeMoveOrDie function
+  * does the snake move ahead or does it hit something and die
+* need a snakeHitChecker function
+  * checks to see if the snake hit a wall or "bit" itself
+* if the snake dies:
+  * display GAME OVER
+  * reset the interal in a resetInterval function

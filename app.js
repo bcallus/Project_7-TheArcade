@@ -1,3 +1,5 @@
+//Using How to Build a Snake Game In JavaScript from freeCodeCamp.org as a guide to help me through getting the game functioning. I am not just copying the work, I am working through all of its parts so that I have an understanding of what each part does. I am changing things when I am confident that I know of another way to achieve the same outcome. 
+
 let gameBoard = document.getElementById("game-board");
 let scoreDisplay = document.getElementsByClassName("score-display");
 let snake = [gameBoard[0]];
@@ -27,16 +29,48 @@ function makeGameBoard () {
 
 function startGame () {
     let gameBoardCell = document.getElementsByClassName("game-board-cell");
-    // randomApple (gameBoardCell);
+    generateRandomApple (gameBoardCell);
     // direction =
     scoreDisplay.innerHTML = score;
     intervalTime = 1000;
     snake = [2, 1, 0];
     currentIndex = 0;
     snake.forEach((index) => gameBoardCell[index].classList.add("snake"));
-    // interval = setInterval(moveOutcome, intervalTime); //moveOutcome is a function, call it snakeMovement
+    interval = setInterval(snakeMoveOrDie, intervalTime);
 }
 
-makeGameBoard()
-startGame()
+function snakeMoveOrDie () {
+    let gameBoardCell = document.getElementsByClassName("game-board-cell");
+    let gameOutcomeMessage = document.getElementsByClassName("game-outcome-message");
+    if (snakeHitChecker(gameBoardCell)) {
+        gameOutcomeMessage.innerHTML = "GAME OVER"
+        return resetInterval(interval); 
+    } else {
+        moveSnake(gameBoardCell);
+    }
+}
+
+function snakeHitChecker () {
+
+}
+
+function resetInterval () {
+
+}
+
+function generateRandomApple () {
+
+}
+
+function moveSnake () {
+
+}
+
+makeGameBoard();
+startGame();
+snakeMoveOrDie();
+snakeHitChecker();
+resetInterval();
+generateRandomApple();
+moveSnake()
 
