@@ -25,6 +25,7 @@ html {
 
 .snake {
     background-color: blue;
+    border: 0;
 }
 .apple {
     background: red;
