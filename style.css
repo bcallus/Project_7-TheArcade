@@ -22,6 +22,10 @@ html {
 .snake {
     background-color: blue;
 }
+.apple {
+    background: red;
+    border-radius: 20px;
+  }
 
 .buttons {
     margin: 1rem;
