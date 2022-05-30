@@ -1,8 +1,11 @@
+//potential options:
+//if snake gets to be a certain length, open up other things on the board.
+
 const gameBoard = document.getElementById("game-board");
 const scoreDisplay = document.getElementById("score-display");
 const gameBoardCell = document.getElementsByClassName("game-board-cell");
 let width = 20; //maybe change this if we allow the user to select a board size
-let snake;
+let snake; //potential options: if snake gets to be a certain length, open up other things on the board.
 let apple;
 let score = 0;
 let direction;
@@ -60,40 +63,47 @@ function startGame () {
         interval: 0,
         snake: startingSnake(),
         apple: generateRandomApple(gameBoardCell),
+        moveSnake: setInterval(tick, 1000, gameBoardCell),
     }
 }
 
-
-    scoreDisplay.innerHTML = "Score: " + score;
-    setInterval(tick, 1000, gameBoardCell) //not sure yet
+ scoreDisplay.innerHTML = "Score: " + score;
 
 
 function tick (gameBoardCell) {
- let tail = snake.pop();
- gameBoardCell[tail].classList.remove("snake");
- snake.unshift(snake[0] + direction)
- gameBoardCell[snake[0]].classList.add("snake");
+    if (direction !== 0) {
+        let tail = snake.pop();
+        gameBoardCell[tail].classList.remove("snake");
+        snake.unshift(snake[0] + direction)
+        gameBoardCell[snake[0]].classList.add("snake");
+        eatApple(gameBoardCell, tail);
+    }
+}
+
+function eatApple (gameBoardCell, tail) {
+    let head = gameBoardCell[snake[0]];
+    if (head.classList.contains("apple")) {
+        head.classList.remove("apple");
+        snake.push(tail);
+        generateRandomApple(gameBoardCell);
+        score++;
+        scoreDisplay.innerHTML = "Score: " + score;
+    }
 }
 
 function resetGame () {
     gameBoard.innerHTML = ""; //get this working
-    // clearInterval(); //need to reset interval before new game starts
+    clearInterval(); //need to reset interval before new game starts
     makeGameBoard();
     startGame();
 }
 
-
-
-
-
 makeGameBoard();
 startGame();
-// generateRandomApple();
-// tick();
-defineSnake();
+
 
 //everything above is my own
-//for below: Using How to Build a Snake Game In JavaScript from freeCodeCamp.org as a guide to help me through getting the game functioning. I am not just copying the work, I am working through all of its parts so that I have an understanding of what each part does. I am changing things when I am confident that I know of another way to achieve the same outcome. 
+//some of the below is being used as reference. some of it is mine own.
 
 // let intervalTime = 0; //turn this into a tick function
 // let interval = 0;
@@ -122,15 +132,7 @@ defineSnake();
 //     }
 // }
 
-// //this would be the tick function
-// function moveSnake (gameBoardCell) {
-//     let tail = snake.pop();
-//     gameBoardCell[tail].classList.remove("snake");
-//     snake.unshift(snake[0] + direction);
-//     eatApple(gameBoardCell, tail);
-//     gameBoardCell[snake[0]].classList.add("snake");
-// }
-
+//this is all mine
 // function snakeHitChecker (gameBoardCell) {
 //     const bottomRow = document.getElementById("game-board").lastChild;
 //     bottomRow.className = "bottom-row";
@@ -157,23 +159,3 @@ defineSnake();
 //     interval = setInterval(snakeMoveOrDie, intervalTime);
 // }
 // }
-
-// //if snake gets to be a certain length, open up other things on the board.
-
-// function resetGame () {
-//     gameBoard.innerHTML = ""; //get this working
-//     makeGameBoard();
-//     startGame();
-// }
-
-
-
-// //remove function calls that already exist in code above
-// snakeMoveOrDie();
-// snakeHitChecker();
-// moveSnake();
-// eatApple();
-
-// //dont forget!!!
-// //fix the score and inner HTML text
-// //add instructions: right now game starts whehn right or down arrows are pressed or start is clicked
