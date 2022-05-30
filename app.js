@@ -1,16 +1,15 @@
 const gameBoard = document.getElementById("game-board");
 const scoreDisplay = document.getElementById("score-display");
+const gameBoardCell = document.getElementsByClassName("game-board-cell");
 let width = 20; //maybe change this if we allow the user to select a board size
 let snake;
 let apple;
 let score = 0;
 let direction;
-// let interval = 1;
 
 document.addEventListener("DOMContentLoaded", function () {
-    // setInterval(tick, 0); //stops it from auto starting but probably not right
     direction = 0;
-    const startButton = document.getElementById("start-button")
+    const startButton = document.getElementById("start-button") //need to disable this after one click, it is still changing the direction if you use it during game play
     startButton.addEventListener("click", function() {
         direction = 1;
     })
@@ -48,17 +47,26 @@ function generateRandomApple (gameBoardCell) {
     apple.classList.add("apple")
 }
 
-function startGame () {
-    const gameBoardCell = document.getElementsByClassName("game-board-cell");
-    generateRandomApple(gameBoardCell);
-    snake = [1, 0]
+function startingSnake () {
+    snake = [1, 0];
     for (const snakeCell of snake) {
         gameBoardCell[snakeCell].classList.add("snake");
     } 
-    scoreDisplay.innerHTML = "Score: " + score;
-    // clearInterval(interval);
-    setInterval(tick, 1000, gameBoardCell) //not sure yet
 }
+
+function startGame () {
+    let newGame = {
+        score: 0,
+        interval: 0,
+        snake: startingSnake(),
+        apple: generateRandomApple(gameBoardCell),
+    }
+}
+
+
+    scoreDisplay.innerHTML = "Score: " + score;
+    setInterval(tick, 1000, gameBoardCell) //not sure yet
+
 
 function tick (gameBoardCell) {
  let tail = snake.pop();
@@ -80,8 +88,9 @@ function resetGame () {
 
 makeGameBoard();
 startGame();
-generateRandomApple();
-tick();
+// generateRandomApple();
+// tick();
+defineSnake();
 
 //everything above is my own
 //for below: Using How to Build a Snake Game In JavaScript from freeCodeCamp.org as a guide to help me through getting the game functioning. I am not just copying the work, I am working through all of its parts so that I have an understanding of what each part does. I am changing things when I am confident that I know of another way to achieve the same outcome. 
