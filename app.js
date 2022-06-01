@@ -71,7 +71,8 @@ startButton.addEventListener("click", function() { //disable start button after 
 
 let intervalRate = 1000;
 function startGame () {
-    // clearInterval(interval)
+    intervalRate = 1000;
+    clearInterval(interval);
     interval = setInterval(tick, intervalRate, gameBoardCell);
     direction = 1;
 }
@@ -112,10 +113,11 @@ playAgain.addEventListener("click", function(){
   })
 
 function resetGame () {
-    gameBoard.innerHTML = ""; //get this working
+    gameBoard.innerHTML = "";
     score = 0;
+    direction = 0;
     scoreDisplay.innerHTML = "Score: " + score;
-    clearInterval(interval); //need to reset interval before new game starts
+    // clearInterval(intervalRate); 
     makeGameBoard();
     startingSnake();
     generateRandomApple(gameBoardCell);
