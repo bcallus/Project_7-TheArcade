@@ -1,5 +1,6 @@
 //potential options:
 //if snake gets to be a certain length, open up other things on the board.
+//test
 
 const gameBoard = document.getElementById("game-board");
 const scoreDisplay = document.getElementById("score-display");
