@@ -4,26 +4,36 @@ html {
     text-align: center;
 }
 
-.score-display {
+#score-display {
     padding: 1rem;
 }
 
 #game-board {
   width: 560px;
   height: 560px;
-  border: 1px solid black;
+  border: 1px solid rgb(6, 6, 6);
   margin: 0 auto;
+  box-shadow: 1rem 1rem black;
   /* display: flex; */
   /* flex-wrap: wrap; */
+}
+
+#game-outcome-message {
+    padding: 1rem;
 }
 
 .game-board-cell {
     width: 25px;
     height: 25px;
-    border: black solid;
+    border: rgb(37, 37, 37) solid;
+    background-color: rgb(53, 59, 67);
 }
 
 .snake {
+    background-color: blue;
+    border: 0;
+}
+.head {
     background-color: blue;
     border: 0;
 }
@@ -34,4 +44,5 @@ html {
 
 .buttons {
     margin: 1rem;
+    padding: 1rem;
 }

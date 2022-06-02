@@ -7,6 +7,7 @@ const scoreDisplay = document.getElementById("score-display");
 const gameBoardCell = document.getElementsByClassName("game-board-cell");
 const startButton = document.getElementById("start-button") 
 const playAgain = document.getElementById("play-again");
+const gameOutcomeMessage = document.getElementById("game-outcome-message");
 
 let width = 20; //maybe change this if we allow the user to select a board size
 let snake;
@@ -31,9 +32,12 @@ function makeGameBoard () {
         gameBoardRow.appendChild(gameBoardCell);
         gameBoardCell.className = "game-board-cell"
         }
-        gameBoardRow.lastChild.classList += " far-right-column"
-        gameBoardRow.firstChild.classList += " far-left-column" 
+        
+        gameBoardRow.lastChild.classList += " far-right-column";
+        gameBoardRow.firstChild.classList += " far-left-column";
     }
+    gameBoard.firstChild.classList = "top-row";
+    gameBoard.lastChild.classList = "bottom-row";
 }
 
 document.addEventListener("keydown", function (event) {
@@ -56,14 +60,16 @@ function startingSnake () {
     } 
 }
 
-//what if apple trys to generate where snake already is?
 function generateRandomApple (gameBoardCell) {
     let apple = gameBoardCell[Math.floor(Math.random() * gameBoardCell.length)];
+    if (apple.classList.contains("snake")) {
+        apple = gameBoardCell[Math.floor(Math.random() * gameBoardCell.length)]
+    }
     apple.classList.add("apple")
 }
 
 
-startButton.addEventListener("click", function() { //disable start button after one click
+startButton.addEventListener("click", function() {
     direction = 1;
     startGame();
     this.disabled = true;
@@ -87,8 +93,11 @@ function tick (gameBoardCell) {
         let tail = snake.pop();
         gameBoardCell[tail].classList.remove("snake");
         snake.unshift(snake[0] + direction)
-        gameBoardCell[snake[0]].classList.add("snake");
+        gameBoardCell[snake[1]].classList.add("snake");
+        gameBoardCell[snake[0]].classList.add("head");
+        gameBoardCell[snake[1]].classList.remove("head");
         eatApple(gameBoardCell, tail);
+        checkHits();
     }
 }
 
@@ -106,8 +115,21 @@ function eatApple (gameBoardCell, tail) {
     }
 }
 
-
 //if snake hits something do this
+//disable arrow buttons after game ends?
+function checkHits () {
+    let head = gameBoardCell[snake[0]];
+    if ((head.classList.contains("top-row") && direction === -width) //fix this
+        || (head.classList.contains("bottom-row") && direction === +width) //fix this
+        || (head.classList.contains("far-right-column"))
+        || (head.classList.contains("far-left-column"))) {
+            direction = 0;
+            gameOutcomeMessage.innerHTML = "You hit a wall! <br>GAME OVER"
+        } else if (head.classList.contains("snake")) {
+        gameOutcomeMessage.innerHTML = "You bit yourself! <br>GAME OVER"
+        direction = 0;
+        }
+}
 
 playAgain.addEventListener("click", function(){
     resetGame();
@@ -115,10 +137,10 @@ playAgain.addEventListener("click", function(){
 
 function resetGame () {
     gameBoard.innerHTML = "";
+    gameOutcomeMessage.innerHTML = "";
     score = 0;
     direction = 0;
     scoreDisplay.innerHTML = "Score: " + score;
-    // clearInterval(intervalRate); 
     makeGameBoard();
     startingSnake();
     generateRandomApple(gameBoardCell);
