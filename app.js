@@ -28,11 +28,13 @@ function makeGameBoard () {
         const gameBoardRow = document.createElement("tr");
         gameBoard.appendChild(gameBoardRow);
         for (let j = 0; j < 20; j++) {
-        const gameBoardCell = document.createElement("td")
+        const gameBoardCell = document.createElement("td") //do i need const?
         gameBoardRow.appendChild(gameBoardCell);
         gameBoardCell.className = "game-board-cell"
         }
-        
+        // if (i === 0){ 
+        //     gameBoardCell.classList.add("top-row");
+        // }
         gameBoardRow.lastChild.classList += " far-right-column";
         gameBoardRow.firstChild.classList += " far-left-column";
     }
@@ -121,7 +123,7 @@ function checkHits () {
     let head = gameBoardCell[snake[0]];
     if ((head.classList.contains("top-row") && direction === -width) //fix this
         || (head.classList.contains("bottom-row") && direction === +width) //fix this
-        || (head.classList.contains("far-right-column"))
+        || (head.classList.contains("far-right-column")) //this onchange?
         || (head.classList.contains("far-left-column"))) {
             direction = 0;
             gameOutcomeMessage.innerHTML = "You hit a wall! <br>GAME OVER"
