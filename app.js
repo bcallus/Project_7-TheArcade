@@ -130,11 +130,13 @@ function eatApple (gameBoardCell, tail) {
 function checkHits () {
     let head = gameBoardCell[snake[0]];
     let neck = gameBoardCell[snake[1]];
+    // let x;
+    // x < 0 || x > (width * width)
+    // let offBoardCell = gameBoardCell[snake[x]];
     if (((neck.classList.contains("far-right-column")) && (direction === 1)) 
-        || (neck.classList.contains("far-left-column")) && (direction === -1)) {
-        //(head.classList.contains("top-row") && direction === -width) //fix this
-        // || (head.classList.contains("bottom-row") && direction === +width) //fix this
-         
+        || ((neck.classList.contains("far-left-column")) && (direction === -1))
+        || ((neck.classList.contains("top-row")) && (direction !== 1)) //fix this, this is where I left off
+        || ((neck.classList.contains("bottom-row")) /*&& (offBoardCell)*/)){  //try messing with Math.abs(direction) !== 1
             gameBoardCell[snake[0]].classList.remove("head");
             direction = 0;
             gameOutcomeMessage.innerHTML = "You hit a wall! <br>GAME OVER"
