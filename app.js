@@ -24,23 +24,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 function makeGameBoard () {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < width; i++) {
         const gameBoardRow = document.createElement("tr");
         gameBoard.appendChild(gameBoardRow);
-        for (let j = 0; j < 20; j++) {
+        for (let j = 0; j < width; j++) {
         const gameBoardCell = document.createElement("td") //do i need const?
         gameBoardRow.appendChild(gameBoardCell);
         gameBoardCell.className = "game-board-cell"
         }
-        // if (i === 0){ 
-        //     gameBoardCell.classList.add("top-row");
-        // }
         gameBoardRow.lastChild.classList += " far-right-column";
         gameBoardRow.firstChild.classList += " far-left-column";
     }
     gameBoard.firstChild.classList = "top-row";
+    if (gameBoard.firstChild.classList = "top-row") {
+        for (let t = 0; t < width; t++) {
+            gameBoardCell[t].classList.add("top-row")
+        }
+    }
     gameBoard.lastChild.classList = "bottom-row";
+    if (gameBoard.lastChild.classList = "bottom-row") {
+        for (let b = (width * (width-1)); b < (width * width); b++) {
+            gameBoardCell[b].classList.add("bottom-row")
+        }
+    } //380-399
 }
+
 
 document.addEventListener("keydown", function (event) {
     const keyName = event.key 
@@ -121,10 +129,13 @@ function eatApple (gameBoardCell, tail) {
 //disable arrow buttons after game ends?
 function checkHits () {
     let head = gameBoardCell[snake[0]];
-    if ((head.classList.contains("top-row") && direction === -width) //fix this
-        || (head.classList.contains("bottom-row") && direction === +width) //fix this
-        || (head.classList.contains("far-right-column")) //this onchange?
-        || (head.classList.contains("far-left-column"))) {
+    let neck = gameBoardCell[snake[1]];
+    if (((neck.classList.contains("far-right-column")) && (direction === 1)) 
+        || (neck.classList.contains("far-left-column")) && (direction === -1)) {
+        //(head.classList.contains("top-row") && direction === -width) //fix this
+        // || (head.classList.contains("bottom-row") && direction === +width) //fix this
+         
+            gameBoardCell[snake[0]].classList.remove("head");
             direction = 0;
             gameOutcomeMessage.innerHTML = "You hit a wall! <br>GAME OVER"
         } else if (head.classList.contains("snake")) {
