@@ -53,10 +53,6 @@ function makeGameBoard () {
 document.addEventListener("keydown", function (event) {
     const keyName = event.key 
     let head = gameBoardCell[snake[0]];
-    if (gameOutcomeMessage.innerHTML){
-        console.log("helloooooo");
-        // keyName.disabled = true;
-    }
     if (head.classList.contains("top-row") && keyName === "ArrowUp") {
         direction = 2;
     } else if (head.classList.contains("bottom-row") && keyName === "ArrowDown") {
@@ -70,6 +66,13 @@ document.addEventListener("keydown", function (event) {
     } else if (keyName === "ArrowLeft") {
         direction = -1;
     } 
+    if (gameOutcomeMessage.innerHTML && (keyName === "ArrowUp"
+        || keyName === "ArrowDown"
+        || keyName === "ArrowRight"
+        || keyName === "ArrowLeft")){
+        console.log("helloooooo");
+        direction = 0;
+    }
 })
 
 function startingSnake () {
