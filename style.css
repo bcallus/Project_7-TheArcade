@@ -9,13 +9,27 @@ html {
 }
 
 #game-board {
-  width: 560px;
-  height: 560px;
+  min-width: 560px;
+  max-height: 560px;
   border: 1px solid rgb(6, 6, 6);
   margin: 0 auto;
+  margin-left: 1rem;
   box-shadow: 1rem 1rem black;
   /* display: flex; */
   /* flex-wrap: wrap; */
+}
+
+.main-section {
+    display: flex;
+}
+
+h2 {
+    text-align: center;
+    margin: .5rem;
+}
+
+ul {
+    text-align: left;
 }
 
 #game-outcome-message {

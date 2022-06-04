@@ -8,6 +8,7 @@ const gameBoardCell = document.getElementsByClassName("game-board-cell");
 const startButton = document.getElementById("start-button") 
 const playAgain = document.getElementById("play-again");
 const gameOutcomeMessage = document.getElementById("game-outcome-message");
+const selectBoardSize = document.getElementById("select-board-size");
 
 let width = 20; //maybe change this if we allow the user to select a board size
 let snake;
@@ -105,10 +106,6 @@ function startGame () {
     direction = 1;
 }
 
-// scoreDisplay.innerHTML = "Score: " + score;
-
-
-
 function tick (gameBoardCell) {
     if (gameBoardCell[snake[0]] === undefined) {
         gameOutcomeMessage.innerHTML = "You hit a wall! <br>GAME OVER"
@@ -138,7 +135,6 @@ function eatApple (gameBoardCell, tail) {
     }
 }
 
-//disable arrow buttons after game ends?
 function checkHits () {
     let head = gameBoardCell[snake[0]];
     let neck = gameBoardCell[snake[1]];
