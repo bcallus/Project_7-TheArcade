@@ -4,6 +4,7 @@ html {
     font-family: play;
     letter-spacing: 2px;
     text-align: center;
+    max-width: 880px;
 }
 h1 {
     text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
@@ -15,7 +16,7 @@ h1 {
     padding: 1rem;
     font-size: 24px;
     text-align: right;
-    margin-right: 2rem;
+    margin-right: 3rem;
 }
 
 #game-board {
@@ -38,6 +39,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 2rem;
     
 }
@@ -45,6 +47,10 @@ h1 {
 h2 {
     margin: .5rem;  
     text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
+}
+img {
+    width: 50%;
+    margin-bottom: 2rem;
 }
 
 #game-outcome-message {
@@ -76,4 +82,19 @@ h2 {
 .buttons {
     margin: 1rem;
     padding: 1rem;
+    margin-right: 2rem;
+    display: flex;
+    justify-content: end;
+}
+
+button {
+    font-size: 18px;
+    margin: .5rem;
+}
+
+a {
+    color: beige;
+    font-size: 12px;
+    float: left;
+    margin: .5rem;
 }
