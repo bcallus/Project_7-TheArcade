@@ -1,11 +1,21 @@
 html {
     background-color: #333;
-    color: white;
+    color: rgb(235, 232, 232);
+    font-family: play;
+    letter-spacing: 2px;
     text-align: center;
+}
+h1 {
+    text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
+
 }
 
 #score-display {
+    text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
     padding: 1rem;
+    font-size: 24px;
+    text-align: right;
+    margin-right: 2rem;
 }
 
 #game-board {
@@ -15,25 +25,32 @@ html {
   margin: 0 auto;
   margin-left: 1rem;
   box-shadow: 1rem 1rem black;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
 }
 
 .main-section {
     display: flex;
 }
-
-h2 {
-    text-align: center;
-    margin: .5rem;
+ 
+.instructions {
+    width: 200px;
+    min-width: 200px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    
 }
 
-ul {
-    text-align: left;
+h2 {
+    margin: .5rem;  
+    text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
 }
 
 #game-outcome-message {
+    text-shadow: 0 0 10px #be0000, 5px 5px 2px black;
     padding: 1rem;
+    font-size: 24px;
 }
 
 .game-board-cell {
@@ -44,11 +61,11 @@ ul {
 }
 
 .snake {
-    background-color: blue;
+    background-color: green;
     border: 0;
 }
 .head {
-    background-color: blue;
+    background-color: green;
     border: 0;
 }
 .apple {
