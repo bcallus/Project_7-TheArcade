@@ -22,7 +22,6 @@ h1 {
 #game-board {
   min-width: 560px;
   max-height: 560px;
-  border: 1px solid rgb(6, 6, 6);
   margin: 0 auto;
   margin-left: 1rem;
   box-shadow: 1rem 1rem black;
@@ -100,19 +99,27 @@ a {
 }
 
 @media screen and (max-width: 850px) {
+    body {
+        max-width: 600px;
+        margin: auto;
+    }
     .main-section {
         display: flex;
         flex-direction: column;
     }
-
     .instructions {
-        width: 60%;
+        width: 80%;
         min-width: 200px;
+        max-height: 60px;
         font-size: 14px;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+    }
+    h2 {
+        margin: .5rem;  
+        text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
     }
 
     img {
@@ -122,6 +129,33 @@ a {
 
     h2 {
         display: none;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
+    .main-section {
+        min-height: 350px;
+    }
+    img {
+        display: none;
+    }
+    .instructions {
+        display: none;
+    }
+    #game-board{
+        max-width: 250px;
+        max-height: 250px;
+        box-shadow: none;
+    }
+    .game-board-cell {
+        width: 15px;
+        height: 15px;
     }
 
 }
