@@ -53,6 +53,10 @@ function makeGameBoard () {
 document.addEventListener("keydown", function (event) {
     const keyName = event.key 
     let head = gameBoardCell[snake[0]];
+    if (gameOutcomeMessage.innerHTML){
+        console.log("helloooooo");
+        // keyName.disabled = true;
+    }
     if (head.classList.contains("top-row") && keyName === "ArrowUp") {
         direction = 2;
     } else if (head.classList.contains("bottom-row") && keyName === "ArrowDown") {
@@ -104,7 +108,9 @@ scoreDisplay.innerHTML = "Score: " + score;
 
 
 function tick (gameBoardCell) {
-    if (direction !== 0) {
+    if (gameBoardCell[snake[0]] === undefined) {
+        gameOutcomeMessage.innerHTML = "You hit a wall! <br>GAME OVER"
+    } else if (direction !== 0) {
         let tail = snake.pop();
         gameBoardCell[tail].classList.remove("snake");
         snake.unshift(snake[0] + direction)
@@ -134,13 +140,10 @@ function eatApple (gameBoardCell, tail) {
 function checkHits () {
     let head = gameBoardCell[snake[0]];
     let neck = gameBoardCell[snake[1]];
-    // if (neck.classList.contains("top-row") && undefined) {
-    //     console.log("hello")
-    // }
     if ((neck.classList.contains("far-right-column") && direction === 1) 
         || (neck.classList.contains("far-left-column") && direction === -1)
         || (neck.classList.contains("top-row") && direction === 2)
-        || (neck.classList.contains("bottom-row") && direction === 2)){  //try messing with Math.abs(direction) !== 1
+        || (neck.classList.contains("bottom-row") && direction === 2)){
             gameBoardCell[snake[0]].classList.remove("head");
             direction = 0;
             gameOutcomeMessage.innerHTML = "You hit a wall! <br>GAME OVER"
