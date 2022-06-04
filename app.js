@@ -12,9 +12,9 @@ const gameOutcomeMessage = document.getElementById("game-outcome-message");
 let width = 20; //maybe change this if we allow the user to select a board size
 let snake;
 let interval;
-// let apple;
 let score = 0;
 let direction;
+scoreDisplay.innerHTML = "Score: " + score;
 
 document.addEventListener("DOMContentLoaded", function () {
     direction = 0;
@@ -70,7 +70,6 @@ document.addEventListener("keydown", function (event) {
         || keyName === "ArrowDown"
         || keyName === "ArrowRight"
         || keyName === "ArrowLeft")){
-        console.log("helloooooo");
         direction = 0;
     }
 })
@@ -106,7 +105,7 @@ function startGame () {
     direction = 1;
 }
 
-scoreDisplay.innerHTML = "Score: " + score;
+// scoreDisplay.innerHTML = "Score: " + score;
 
 
 
