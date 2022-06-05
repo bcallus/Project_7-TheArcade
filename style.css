@@ -12,12 +12,23 @@ h1 {
 
 }
 
+.game-play-stats {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
 #score-display {
     text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
-    padding: 1rem;
-    font-size: 24px;
-    text-align: right;
     margin-right: 3rem;
+    /* font-size: 24px; */
+}
+
+#high-score-display {
+    margin-left: 3rem;
+    text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
 }
 
 #game-board {
@@ -56,7 +67,7 @@ img {
 #game-outcome-message {
     text-shadow: 0 0 10px #be0000, 5px 5px 2px black;
     padding: 1rem;
-    font-size: 24px;
+    /* font-size: 24px; */
 }
 
 .game-board-cell {
@@ -93,11 +104,21 @@ button {
 }
 
 a {
-    color: beige;
+    color: rgb(130, 196, 254);
     font-size: 12px;
     float: left;
     margin: .5rem;
 }
+footer {
+    font-size: 14px;
+    color: beige;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+ footer p {
+     margin-top: .2rem;
+ }
 
 @media screen and (max-width: 850px) {
     body {

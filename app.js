@@ -4,6 +4,7 @@
 
 const gameBoard = document.getElementById("game-board");
 const scoreDisplay = document.getElementById("score-display");
+const highScoreDisplay = document.getElementById("high-score-display");
 const gameBoardCell = document.getElementsByClassName("game-board-cell");
 const startButton = document.getElementById("start-button") 
 const playAgain = document.getElementById("play-again");
@@ -60,12 +61,16 @@ document.addEventListener("keydown", function (event) {
         direction = 2;
     } else if (keyName === "ArrowUp") {
         direction = -width;
+        event.preventDefault();
     } else if (keyName === "ArrowDown") {
         direction = + width;
+        event.preventDefault();
     } else if (keyName === "ArrowRight") {
         direction = 1;
+        event.preventDefault();
     } else if (keyName === "ArrowLeft") {
         direction = -1;
+        event.preventDefault();
     } 
     if (gameOutcomeMessage.innerHTML && (keyName === "ArrowUp"
         || keyName === "ArrowDown"
@@ -134,8 +139,9 @@ function eatApple (gameBoardCell, tail) {
         interval = setInterval(tick, intervalRate, gameBoardCell);
     }
 }
-
+let highScore = 0;
 function checkHits () {
+    highScoreDisplay.innerHTML = "High Score: " + highScore;
     let head = gameBoardCell[snake[0]];
     let neck = gameBoardCell[snake[1]];
     if ((neck.classList.contains("far-right-column") && direction === 1) 
@@ -149,6 +155,15 @@ function checkHits () {
         gameOutcomeMessage.innerHTML = "You bit yourself! <br>GAME OVER"
         direction = 0;
         }
+    if (gameOutcomeMessage.innerHTML && score > highScore) {
+        console.log(score);
+        console.log(highScore);
+        if (score > highScore) {
+            highScore = score;
+            console.log(highScore);
+            highScoreDisplay.innerHTML = "High Score: " + highScore; 
+        }
+    }
 }
 
 playAgain.addEventListener("click", function(){
