@@ -7,6 +7,7 @@ html {
     max-width: 880px;
     margin: auto;
 }
+
 h1 {
     text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
 
@@ -23,7 +24,6 @@ h1 {
 #score-display {
     text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
     margin-right: 3rem;
-    /* font-size: 24px; */
 }
 
 #high-score-display {
@@ -59,6 +59,7 @@ h2 {
     margin: .5rem;  
     text-shadow: 0 0 5px #0e5822, 5px 5px 2px black;
 }
+
 img {
     width: 50%;
     margin-bottom: 2rem;
@@ -67,7 +68,6 @@ img {
 #game-outcome-message {
     text-shadow: 0 0 10px #be0000, 5px 5px 2px black;
     padding: 1rem;
-    /* font-size: 24px; */
 }
 
 .game-board-cell {
@@ -179,5 +179,8 @@ footer {
         width: 15px;
         height: 15px;
     }
-
+    .game-play-stats {
+        font-size: 16px;
+        padding: .5rem;
+    }
 }

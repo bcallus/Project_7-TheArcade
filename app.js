@@ -1,7 +1,3 @@
-//potential options:
-//if snake gets to be a certain length, open up other things on the board.
-//test
-
 const gameBoard = document.getElementById("game-board");
 const scoreDisplay = document.getElementById("score-display");
 const highScoreDisplay = document.getElementById("high-score-display");
@@ -11,7 +7,7 @@ const playAgain = document.getElementById("play-again");
 const gameOutcomeMessage = document.getElementById("game-outcome-message");
 const selectBoardSize = document.getElementById("select-board-size");
 
-let width = 20; //maybe change this if we allow the user to select a board size
+let width = 20;
 let snake;
 let interval;
 let score = 0;
@@ -30,7 +26,7 @@ function makeGameBoard () {
         const gameBoardRow = document.createElement("tr");
         gameBoard.appendChild(gameBoardRow);
         for (let j = 0; j < width; j++) {
-        const gameBoardCell = document.createElement("td") //do i need const?
+        const gameBoardCell = document.createElement("td")
         gameBoardRow.appendChild(gameBoardCell);
         gameBoardCell.className = "game-board-cell"
         }
@@ -48,7 +44,7 @@ function makeGameBoard () {
         for (let b = (width * (width-1)); b < (width * width); b++) {
             gameBoardCell[b].classList.add("bottom-row")
         }
-    } //380-399
+    }
 }
 
 
@@ -95,13 +91,11 @@ function generateRandomApple (gameBoardCell) {
     apple.classList.add("apple")
 }
 
-
 startButton.addEventListener("click", function() {
     direction = 1;
     startGame();
     this.disabled = true;
 });
-
 
 let intervalRate = 1000;
 function startGame () {
@@ -139,6 +133,7 @@ function eatApple (gameBoardCell, tail) {
         interval = setInterval(tick, intervalRate, gameBoardCell);
     }
 }
+
 let highScore = 0;
 function checkHits () {
     highScoreDisplay.innerHTML = "High Score: " + highScore;

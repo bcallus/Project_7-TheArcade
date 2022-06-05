@@ -118,20 +118,20 @@ let gameState = {
 * need resetGame function
 * need a generateRandomApple function
   * places the apple randomly after it is eaten or at the start of the game
-* need a snakeMoveOrDie function
+* need a function to check if snake dies or moves ahead
   * does the snake move ahead or does it hit something and die
 * need a snakeHitChecker function
   * checks to see if the snake hit a wall or "bit" itself
 * if the snake dies:
   * display GAME OVER
-  * reset the interal in a resetInterval function
+  * reset the interval in a resetInterval function
 * if snake doesn't die:
   * move snake
     * pop the last index (that is the tail)
     * remove its class so the css dissapears 
     * add a cell and class to the head in the direction that it's going
 * check hits
-  * i do not like example so I will try it differenly 
+  * need to identify walls and the snake itself
     * give the top row and bottom row different IDs, and give the left most cells and right most cells different IDs
     * set the if statement to say "if the head of the snake is in the bottom row class name, and the direction is down), etc
     * use includes for the snake eating itself
